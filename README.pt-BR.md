@@ -37,7 +37,7 @@ Copie as pastas das skills para a pasta de skills da ferramenta. O caminho depen
 
 ### handoff
 
-Quando a sessão fica longa, rode `/handoff`. Ele salva onde a tarefa está em `.handoff/<topic>.md`: o objetivo, as decisões e o motivo de cada uma, o que já foi feito, o próximo passo e as armadilhas. O arquivo é reescrito a cada execução e fica com até 40 linhas.
+Quando a sessão fica longa, rode `/handoff`. Ele salva onde a tarefa está em `.handoff/<topic>.md`: o objetivo, as decisões e o motivo de cada uma, os caminhos descartados e o motivo, o que já foi feito, o próximo passo e as armadilhas. O arquivo é reescrito a cada execução e fica com até 40 linhas.
 
 Duas regras mantêm o arquivo confiável:
 

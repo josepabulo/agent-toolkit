@@ -12,7 +12,9 @@ Adicionar paginação por cursor na listagem `GET /orders` em `src/orders/list.p
 # Decisions
 - Cursor `(created_at, id)` em vez de `OFFSET`: `OFFSET` relê as linhas puladas e degrada com o volume. O cursor usa o índice `orders_created_id_idx`.
 - Limite de 100 itens por página: contrato já publicado para o app mobile. Não aumentar sem alinhar com o time mobile.
-- Descartado: paginação por número de página. Um pedido novo durante a navegação duplicaria itens.
+
+# Discarded
+- Paginação por número de página: um pedido novo durante a navegação duplicaria itens.
 
 # State
 - Done and verified: encode/decode do cursor em `src/orders/cursor.py`, com `pytest tests/test_cursor.py` passando (12 testes).

@@ -37,7 +37,7 @@ Copy the skill folders into the skills folder of the tool. The location depends 
 
 ### handoff
 
-When a session gets long, run `/handoff`. It saves where the task stands in `.handoff/<topic>.md`: the objective, the decisions and why they were made, what is done, the next step, and the pitfalls. The file is rewritten on each run and kept under 40 lines.
+When a session gets long, run `/handoff`. It saves where the task stands in `.handoff/<topic>.md`: the objective, the decisions and why they were made, the paths discarded and why, what is done, the next step, and the pitfalls. The file is rewritten on each run and kept under 40 lines.
 
 Two rules keep it reliable:
 

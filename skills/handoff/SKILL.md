@@ -43,7 +43,10 @@ plan: <path to the plan file for this task, if any>
 One specific sentence. It names the file and labels the /pickup list.
 
 # Decisions
-- What was chosen, why, and the alternatives rejected.
+- What was chosen and why.
+
+# Discarded
+- Paths tried or rejected, each with the reason.
 
 # State
 - Done and verified:
@@ -58,7 +61,7 @@ One concrete action.
 
 `plan:` only when a plan file for this task exists. Terse bullets. No transcript, no event log, no secrets or tokens.
 
-Rewrite the whole file on every run, never append. Drop resolved pitfalls and finished half-done items; keep in Decisions only the non-obvious why. Aim for at most 40 lines.
+Rewrite the whole file on every run, never append. Drop resolved pitfalls and finished half-done items; keep in Decisions only the non-obvious why. Keep every Discarded entry until `done`, even when the path looks settled, so the next session does not retry it. Aim for at most 40 lines.
 
 ## Status
 
