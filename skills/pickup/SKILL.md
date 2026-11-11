@@ -25,6 +25,10 @@ Run all checks in a single Bash call.
 
 Divergences are warnings, never blockers.
 
+## Rename the session
+
+The session title is the handoff's topic (the file name without `.md`), so the session list shows the task. A hook may already have set it; then the context says so and nothing more is needed. Otherwise the agent cannot rename a session, so end the report with the ready-to-paste line `/rename <topic>` for the user to run. Never skip it silently.
+
 ## Report and stop
 
 Read the handoff, and the `plan:` file if set. Read nothing else yet. Reply in the user's language, three lines: where it stopped, next step, divergences (or "none"). Then wait for the user's explicit go-ahead. No edits and no commands beyond the checks above until then.

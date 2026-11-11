@@ -75,6 +75,30 @@ Na sessão nova, `/pickup` lê o arquivo de handoff, confere com o git e mostra 
 
 - `/pickup` na sessão nova. Com um handoff ativo, ele carrega esse. Com vários, pergunta qual.
 
+#### Título da sessão
+
+A sessão recebe o nome do tópico do handoff, e a lista de sessões mostra a tarefa. Uma skill não consegue renomear a sessão, então o `/pickup` termina o relatório com a linha `/rename <topic>` pronta para colar.
+
+Para renomear automaticamente, registre o hook opcional [examples/hooks/pickup-title.sh](examples/hooks/pickup-title.sh). Ele precisa do `jq`. Copie o script para um lugar estável, torne-o executável com `chmod +x` e adicione ao `~/.claude/settings.json`:
+
+```json
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          { "type": "command", "command": "/caminho/para/pickup-title.sh" }
+        ]
+      }
+    ]
+  }
+}
+```
+
+O hook define o título quando o `/pickup` roda com um tópico ou com um único handoff ativo, e avisa a skill para não imprimir a linha `/rename`. Com vários handoffs ativos ele não faz nada, e a linha manual é impressa.
+
+Se você já tem uma entrada `UserPromptSubmit`, acrescente o novo objeto ao array `hooks` dela em vez de substituir. O hook só vale para sessões iniciadas depois do registro.
+
 ## Licença
 
 MIT. Veja [LICENSE](LICENSE).

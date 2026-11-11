@@ -75,6 +75,30 @@ In a new session, `/pickup` reads the handoff file, checks it against git, and t
 
 - `/pickup` in the new session. With one active handoff it loads that one. With several, it asks which.
 
+#### Session title
+
+The session is named after the handoff's topic, so the session list shows the task. A skill cannot rename a session, so `/pickup` ends its report with a ready-to-paste `/rename <topic>` line.
+
+To have it renamed automatically, register the optional hook [examples/hooks/pickup-title.sh](examples/hooks/pickup-title.sh). It needs `jq`. Copy it somewhere stable, make it executable with `chmod +x`, and add it to `~/.claude/settings.json`:
+
+```json
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          { "type": "command", "command": "/path/to/pickup-title.sh" }
+        ]
+      }
+    ]
+  }
+}
+```
+
+The hook sets the title when `/pickup` runs with a topic or with a single active handoff, and tells the skill to skip the `/rename` line. With several active handoffs it does nothing, and the manual line is printed.
+
+If you already have a `UserPromptSubmit` entry, add the new object to its `hooks` array instead of replacing it. The hook only applies to sessions started after you register it.
+
 ## License
 
 MIT. See [LICENSE](LICENSE).
