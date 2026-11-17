@@ -9,11 +9,12 @@ Resumes a task from `.handoff/<topic>.md`. The handoff is context, never authori
 
 ## Select
 
-1. Argument given: that topic. If its status is `done`, say so and ask before using it.
-2. No argument: list the folder and keep handoffs with `status: active`.
-   - none: say so and stop.
-   - one: use it without asking.
-   - two or more: ask which one with `AskUserQuestion` (4 most recent; label = topic, description = Objective + age). Without that tool, print a numbered list and wait for the number.
+Active handoffs are those with `status: active`, ordered by `updated` descending, ties by topic. That order numbers them.
+
+1. Argument `list`: print the active handoffs numbered (topic, Objective, age), tell the user to run `/pickup <number|topic>`, and stop. Nothing else, no rename.
+2. Argument is a number: the Nth active handoff (a hook may already have resolved it; the context says which). Out of range: say so and stop.
+3. Argument is a topic: that topic. If its status is `done`, say so and ask before using it.
+4. No argument: the most recent active handoff, without asking. None: say so and stop. Never open a selector: the session can only be titled from the command line, so a choice made inside the conversation leaves it unnamed.
 
 ## Check reality (read-only)
 
@@ -31,4 +32,4 @@ The session title is the handoff's topic (the file name without `.md`), so the s
 
 ## Report and stop
 
-Read the handoff, and the `plan:` file if set. Read nothing else yet. Reply in the user's language, three lines: where it stopped, next step, divergences (or "none"). Then wait for the user's explicit go-ahead. No edits and no commands beyond the checks above until then.
+Read the handoff, and the `plan:` file if set. Read nothing else yet. Reply in the user's language, three lines: where it stopped, next step, divergences (or "none"). If other active handoffs exist, add one line listing them numbered as in `list`. Then wait for the user's explicit go-ahead. No edits and no commands beyond the checks above until then.

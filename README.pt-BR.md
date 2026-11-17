@@ -73,7 +73,9 @@ Na sessão nova, `/pickup` lê o arquivo de handoff, confere com o git e mostra 
 
 #### Uso
 
-- `/pickup` na sessão nova. Com um handoff ativo, ele carrega esse. Com vários, pergunta qual.
+- `/pickup` na sessão nova carrega o handoff ativo mais recente. Se houver outros ativos, o relatório lista os demais numerados.
+- `/pickup list` mostra os handoffs ativos numerados, do mais recente ao mais antigo, e para.
+- `/pickup 2` ou `/pickup <topic>` carrega esse handoff.
 
 #### Título da sessão
 
@@ -95,7 +97,7 @@ Para renomear automaticamente, registre o hook opcional [examples/hooks/pickup-t
 }
 ```
 
-O hook define o título quando o `/pickup` roda com um tópico ou com um único handoff ativo, e avisa a skill para não imprimir a linha `/rename`. Com vários handoffs ativos ele não faz nada, e a linha manual é impressa.
+O hook define o título quando o `/pickup` roda sem argumento, com um número ou com um tópico, e avisa a skill para não imprimir a linha `/rename`. O `/pickup list` não renomeia nada. O título precisa ser definido pela linha de comando, e por isso o `/pickup` nunca abre um seletor: uma escolha feita dentro da conversa deixaria a sessão sem nome.
 
 Se você já tem uma entrada `UserPromptSubmit`, acrescente o novo objeto ao array `hooks` dela em vez de substituir. O hook só vale para sessões iniciadas depois do registro.
 

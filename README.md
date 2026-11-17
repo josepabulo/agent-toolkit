@@ -73,7 +73,9 @@ In a new session, `/pickup` reads the handoff file, checks it against git, and t
 
 #### Usage
 
-- `/pickup` in the new session. With one active handoff it loads that one. With several, it asks which.
+- `/pickup` in the new session loads the most recent active handoff. If other active handoffs exist, the report lists them numbered.
+- `/pickup list` shows the active handoffs numbered, most recent first, and stops.
+- `/pickup 2` or `/pickup <topic>` loads that handoff instead.
 
 #### Session title
 
@@ -95,7 +97,7 @@ To have it renamed automatically, register the optional hook [examples/hooks/pic
 }
 ```
 
-The hook sets the title when `/pickup` runs with a topic or with a single active handoff, and tells the skill to skip the `/rename` line. With several active handoffs it does nothing, and the manual line is printed.
+The hook sets the title when `/pickup` runs with no argument, a number or a topic, and tells the skill to skip the `/rename` line. `/pickup list` does not rename anything. The title has to be set from the command line, which is why `/pickup` never opens a selector: a choice made inside the conversation would leave the session unnamed.
 
 If you already have a `UserPromptSubmit` entry, add the new object to its `hooks` array instead of replacing it. The hook only applies to sessions started after you register it.
 
